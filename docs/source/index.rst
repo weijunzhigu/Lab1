@@ -1,4 +1,4 @@
-Welcome to Lumache's documentation!
+Lab 1 Handout: Dependency Analysis and Dependency Graphs
 ===================================
 
 **Lumache** (/lu'make/) is a Python library for cooks and food lovers
