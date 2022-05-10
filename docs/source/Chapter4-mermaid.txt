@@ -1,0 +1,77 @@
+classDiagram
+   
+    services..>model
+    services..>AbstractRepository
+    services..>OrderLine
+    SqlAlchemyRepository--*AbstractRepository
+    model..>OutOfStock
+    model..>OrderLine
+    model..>Batch
+    orm..>OrderLine
+    orm..>Batch
+    AbstractRepository..>Batch
+    Batch..>OrderLine
+    flask_app..>OrderLine
+    flask_app..>InvalidSku
+    flask_app..>config
+    flask_app..>services
+    flask_app..>SqlAlchemyRepository
+    flask_app..>orm
+    flask_app..>OutOfStock
+
+    class OrderLine{
+      +str:orderid
+      +str:sku
+      +int:qty
+    }
+    class Batch{
+      +str:reference
+      +str:sku
+      -int:purchased_quantity
+      +Optional[date]:eta
+      -allocations:Set[OrderLine]
+      __repr__(self)
+      __eq__(self, other)
+__hash__(self)
+__gt__(self, other)
++allocate(self, line: OrderLine)
++deallocate_one(self)
++allocated_quantity(self)
++available_quantity(self)
++can_allocate(self, line: OrderLine)
+    }
+    class AbstractRepository{
+      +add(self, batch: model.Batch)
+      +get(self, reference)
+    }
+    class orm{
+      +start_mappers()
+    }
+    class SqlAlchemyRepository{
+      +session
++add(self, batch)
++get(self, reference)
++list(self)
+    }
+    class services{
+      +is_valid_sku(sku, batches)
+      +allocate(line: OrderLine, repo: AbstractRepository, session)
+    }
+    class model{
+      +allocate(line: OrderLine, batches: List[Batch])
+    }
+    class OutOfStock{
+
+    }
+    class InvalidSku{
+
+    }
+    class config{
+      +get_postgres_uri()
+      +get_api_url()
+    }
+    class flask_app{
+      +allocate_endpoint()
+    }
+    
+            

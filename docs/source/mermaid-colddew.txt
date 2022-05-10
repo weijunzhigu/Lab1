@@ -1,0 +1,100 @@
+classDiagram
+main..>WordFreq
+main..>InsertQuery
+main..>RecordQuery
+main..>pickle_idea2
+main..>difficulty
+main..>wordfreqCMD
+main..>pickle_idea
+RecordQuery--|>Sqlite3Template
+InsertQuery--|>Sqlite3Template
+difficulty..>wordfreqCMD
+WordFreq..>wordfreqCMD
+wordfreqCMD..>pickle_idea
+  class main{
+    +get_random_image(path)
++get_random_ads()
++total_number_of_essays()
++load_freq_history(path)
++verify_user(username, password)
++add_user(username, password)
++check_username_availability(username)
++get_expiry_date(username)
++within_range(x, y, r)
++get_article_title(s)
++get_article_body(s)
++get_today_article(user_word_list, articleID)
++appears_in_test(word, d)
++get_time()
++get_question_part(s)
++get_answer_part(s)
++get_flashed_messages_if_any()
++user_reset(username)
++mark_word()
++mainpage()
++user_mark_word(username)
++unfamiliar(username,word)
++familiar(username,word)
++deleteword(username,word)
++userpage(username)
++signup()
++login()
++logout()
+  }
+   class Sqlite3Template{
+    +__init__(self, db_fname)
++connect(self, db_fname)
++instructions(self, query_statement)
++operate(self)
++format_results(self)
++do(self)
++instructions_with_parameters(self, query_statement, parameters)
++do_with_parameters(self)
++operate_with_parameters(self)
+  }
+   class WordFreq{
+    +__init__(self, s)
++get_freq(self)
+  }
+   class InsertQuery{
+    +instructions(self, query)
+  }
+   class RecordQuery{
+    +instructions(self, query)
++format_results(self)
++get_results(self)
+  }
+   class pickle_idea2{
+    +lst2dict(lst, d)
++deleteRecord(path,word)
++dict2lst(d)
++merge_frequency(lst1, lst2)
++load_record(pickle_fname)
++save_frequency_to_pickle(d, pickle_fname)
+  }
+   class difficulty{
+    +load_record(pickle_fname)
++difficulty_level_from_frequency(word, d)
++get_difficulty_level(d1, d2)
++revert_dict(d)
++user_difficulty_level(d_user, d)
++text_difficulty_level(s, d)
+  }
+   class wordfreqCMD{
+    +freq(fruit)
++youdao_link(s)
++file2str(fname)
++remove_punctuation(s)
++sort_in_descending_order(lst)
++sort_in_ascending_order(lst)
++make_html_page(lst, fname)
+  }
+   class pickle_idea{
+    +lst2dict(lst, d)
++dict2lst(d)
++merge_frequency(lst1, lst2)
++load_record(pickle_fname)
++save_frequency_to_pickle(d, pickle_fname)
++unfamiliar(path,word)
++familiar(path,word)
+  }
